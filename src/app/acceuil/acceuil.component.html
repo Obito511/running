@@ -1,0 +1,271 @@
+<app-header></app-header>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css" integrity="sha256-46r060N2LrChLLb5zowXQ72/iKKNiw/lAmygmHExk/o=" crossorigin="anonymous" />
+<div class="container-fluid">
+  <div class="col-6">
+    <div class="section-title">
+      <h2>Mon Compte</h2>
+  </div>
+   </div>
+    <div class="main-body" >
+          <div class="row gutters-sm">
+            <div class="col-md-4 mb-3">
+              <div class="card" >
+                <div class="card-body">
+                  <div class="d-flex flex-column align-items-center text-center">
+                    <img [src]="response?.uri"  class="rounded-circle" width="200" height="200">
+                    <div class="mt-3">
+                      <h4>{{response?.pren_PERS+" "+response?.nom_PERS}}</h4>
+                      <p class="text-secondary mb-1">{{response?.grade_ADM}}</p>
+                    </div>
+                    <div class="row">
+                      <div class="col-sm-12">
+                        <div class="inner-sidebar-header justify-content-center">
+                          <button (click)="OpenModal2()" class="btn  has-icon btn-block" style="background-color: #20247b;color: white;" type="button" data-bs-toggle="modal2" data-target="#threadModal2">
+                     Modifier mot de passe 
+                          </button>
+                      </div>
+                      <br>
+                      <div class="form-group">
+                        <label for="image" class="btn btn-primary" >Changer la photo de profil</label>
+
+                        <input type="file" (change)="selectFile($event);changerPhoto()"  class="form-control" id="image" style="display: none;">
+
+                    </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+           
+            </div>
+            <div class="col-md-8">
+              <div class="card mb-3">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm-3">
+                          <h6 class="mb-0">Matricule</h6>
+                        </div>
+                        <div class="col-sm-9 text-secondary">
+                          {{response?.mat_Pers}}
+                        </div>
+                      </div>
+                      <hr>
+                    <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Nom et Prénom</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      {{response?.pren_PERS+" "+response?.nom_PERS}}
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Email</h6>
+                    </div>
+                    <div class="col-sm-7 text-secondary">
+                      {{response?.email}}
+                    </div>
+                    <div class="col-sm-2">
+                      <div class="inner-sidebar-header justify-content-center">
+                        <button (click)="openModal1()" class="btn  has-icon btn-block" style="background-color: #20247b;color: white;" type="button" data-bs-toggle="modal1" data-target="#threadModal1">
+                   Modifier
+                        </button>
+                    </div>
+                  </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Numéro de téléphone</h6>
+                    </div>
+                    <div class="col-sm-7 text-secondary">
+                      {{response?.numerodetelephone}}
+                    </div>
+                    <div class="col-sm-2">
+                    <div class="inner-sidebar-header justify-content-center">
+                      <button (click)="openModal()" class="btn  has-icon btn-block" style="background-color: #20247b;color: white;" type="button" data-bs-toggle="modal" data-target="#threadModal">
+                 Modifier
+                      </button>
+                  </div>
+                </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Date d'embauche</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      {{response?.date_EMB1}}
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Date de naissance</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      {{response?.dat_NAIS}}
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Code Retrait</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      {{response?.cod_RETR}}
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Num_assurance</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      {{response?.num_ASS}}
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Solde de congé</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      0
+                    </div>
+                  </div>
+                  <hr>
+                    
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Echélle</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      1456
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Num Retrait</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      {{response?.num_RETR}}
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Poste de travail</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      {{response?.poste_TRAV}}
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Régime</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      {{response?.cod_REG}}
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Famille</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      <p *ngFor="let member of family">{{member?.prenom}}</p>
+                      
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class="modal fade"  id="threadModal" tabindex="-1" role="dialog" aria-labelledby="threadModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                  <form>
+                      <div class="modal-header d-flex align-items-center  text-white" style="background-color:  #20247b;">
+                          <h6 class="modal-title mb-0" id="threadModalLabel">Nouveau numéro de téléphone</h6>
+                          
+                      </div>
+                      <div class="modal-body">
+                          <div class="form-group">
+                              <label for="threadTitle">numéro de téléphone</label>
+                              <input type="text" class="form-control" id="threadTitle" [(ngModel)]="User.MDP" [ngModelOptions]="{standalone: true}" placeholder="Entrer ton nouveau numéro de téléphone" autofocus="" />
+                          </div>
+                        
+                      </div>
+                      <div class="modal-footer">
+                          <button  (click)="onCloseHandled()" type="button" class="btn btn-light" data-dismiss="modal">Cancel</button>
+                          <button type="button" (click)="ModifierNumero () " class="btn "style="background-color: #fc5356;color:white;">Sauvegarder</button>
+                      </div>
+                  </form>
+              </div>
+          </div>
+      </div>
+      <div class="modal fade"  id="threadModal1" tabindex="-1" role="dialog" aria-labelledby="threadModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <form>
+                    <div class="modal-header d-flex align-items-center  text-white" style="background-color:  #20247b;">
+                        <h6 class="modal-title mb-0" id="threadModalLabel">Nouveau Email</h6>
+                        
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="threadTitle">Email</label>
+                            <input type="email" class="form-control" [(ngModel)]="User.MDP" [ngModelOptions]="{standalone: true}" id="threadTitle" placeholder="Entrer ton nouveau email" autofocus="" />
+                        </div>
+                        
+                    </div>
+                    <div class="modal-footer">
+                        <button  (click)="onCloseHandled1()" type="button" class="btn btn-light" data-dismiss="modal">Cancel</button>
+                        <button type="button" (click)="modifierEmail()" class="btn "style="background-color: #fc5356;color:white;">Sauvegarder</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade"  id="threadModal2" tabindex="-1" role="dialog" aria-labelledby="threadModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+              <form>
+                  <div class="modal-header d-flex align-items-center  text-white" style="background-color:  #20247b;">
+                      <h6 class="modal-title mb-0"   id="threadModalLabel">Nouveau mot de passe</h6>
+                      
+                  </div>
+                  <div class="modal-body">
+                      <div class="form-group">
+                          <label for="threadTitle">mot de passe actuel</label>
+                          <input type="text" class="form-control"  [(ngModel)]="x.oldPassword" [ngModelOptions]="{standalone: true}" id="threadTitle" placeholder="Enter title" autofocus="" />
+                      </div>
+                      <div class="form-group">
+                        <label for="threadTitle">nouveau mot de passe</label>
+                        <input type="text"  [(ngModel)]="x.newPassword" [ngModelOptions]="{standalone: true}" class="form-control" id="threadTitle" placeholder="Enter title" autofocus="" />
+                    </div>
+                    <div class="form-group">
+                      <label for="threadTitle">verifier nouveau mot de passe </label>
+                      <input type="text"  [(ngModel)]="x.newPassword2" [ngModelOptions]="{standalone: true}" class="form-control" id="threadTitle" placeholder="Enter title" autofocus="" />
+                  </div>
+                    
+                  </div>
+                  <div class="modal-footer">
+                      <button  (click)="onCloseHandled2()" type="button" class="btn btn-light" data-dismiss="modal">Cancel</button>
+                      <button type="button" (click)="ModifierPassword ()" class="btn "style="background-color: #fc5356;color:white;">Sauvegarder</button>
+                  </div>
+                  
+              </form>
+              
+          </div>
+      </div>
+  </div>
+    </div>
+<app-footer></app-footer>

@@ -1,0 +1,17 @@
+{
+    "name": "intranet",
+    "short_name": "intranet",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#FFE9D2",
+    "theme_color": "#FFE1C4",
+    "orientation": "portrait-primary",
+    "icons": [
+      {
+        "src": "assets/icon_72.png",
+        "type": "image/png",
+        "sizes": "72x72"
+      }
+    
+    ]
+  }

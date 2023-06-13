@@ -1,0 +1,60 @@
+<app-header></app-header>
+<body>
+   
+            <section class="intro">
+                
+                <div class="bg-image h-100" style="background-color: #ffffff;margin-top: 0%;">
+                  <div class="mask d-flex align-items-center h-100">
+                    <div class="container-fluid">
+                      
+        <div class="row">
+          <div class="col-6">
+            <div class="section-title">
+              <h2>Mes Fiche de paies</h2>
+          </div>
+           </div>
+        </div>
+                   
+                      <div class="row justify-content-center">
+                        <div class="col-12">
+                              <div  class="table-responsive "style="margin-top:2%">
+                                <table  class="table table-striped  mb-0" style="background-color: rgb(255, 255, 255);">
+                                  <thead >
+                                    <tr class="text-uppercase">
+                                      <th scope="col">Mois</th>
+                                      <th scope="col"> </th>
+                                      <th scope="col"> </th>
+                                      <th scope="col">actions</th>
+                                    
+                                    </tr>
+                                  </thead>
+                                  <tbody style="-webkit-text-fill-color: rgb(5, 5, 5);">
+                                    <tr *ngFor="let fiche of response;">
+                                      <td>{{fiche.date}}</td>
+                                      <td> </td>
+                                      <td> </td>
+                                      <td><button (click)="download(fiche.uri,getfilename(fiche.uri))" class="btn"><i class="fa fa-download"></i></button></td>
+                                      
+                                    </tr>
+                               
+                                
+                                  
+                                  </tbody>
+                               
+                                </table>
+                                <br>
+                                <br>
+                                <br>
+                                <br>
+                                <br>
+                              </div>
+                           
+                          
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </body>
+            <app-footer></app-footer>

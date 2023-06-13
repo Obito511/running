@@ -1,0 +1,187 @@
+<app-header></app-header>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css" integrity="sha256-46r060N2LrChLLb5zowXQ72/iKKNiw/lAmygmHExk/o=" crossorigin="anonymous" />
+<div class="col-6">
+    <div class="section-title"style="padding-left: 40px;">
+      <h2>forum</h2>
+  </div>
+   </div>
+<div class="container">
+   
+<div class="main-body p-0">
+    <div class="inner-wrapper">
+        <!-- Inner sidebar -->
+        <div class="inner-sidebar">
+            <!-- Inner sidebar header -->
+            <div class="inner-sidebar-header justify-content-center">
+                <button (click)="openModal()" class="btn  has-icon btn-block" style="background-color: #20247b;color: white;" type="button" data-bs-toggle="modal" data-target="#threadModal">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus mr-2">
+                        <line x1="12" y1="5" x2="12" y2="19"></line>
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                    </svg>
+                  Nouvelle Discusion
+                </button>
+            </div>
+            <!-- /Inner sidebar header -->
+
+            <!-- Inner sidebar body -->
+            <div class="inner-sidebar-body p-0">
+                <div class="p-3 h-100" data-simplebar="init">
+                    <div class="simplebar-wrapper" style="margin: -16px;">
+                        <div class="simplebar-height-auto-observer-wrapper"><div class="simplebar-height-auto-observer"></div></div>
+                        <div class="simplebar-mask">
+                            <div class="simplebar-offset" style="right: 0px; bottom: 0px;">
+                                <div class="simplebar-content-wrapper" style="height: 100%; overflow: hidden scroll;">
+                                    <div class="simplebar-content" style="padding: 16px;">
+                                        <nav class="nav nav-pills nav-gap-y-1 flex-column">
+                                            <a href="javascript:void(0)" class="nav-link nav-link-faded has-icon active" id="tous" (click)="Tous()">Toutes les discussions</a>
+                                            <a href="javascript:void(0)" class="nav-link nav-link-faded has-icon" id="pop" (click)="Populaire()"> Populaire</a>
+
+                                            <a href="javascript:void(0)" class="nav-link nav-link-faded has-icon" id="pas" (click)="PasDeReponse()">Pas encore de réponses</a>
+                                        </nav>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="simplebar-placeholder" style="width: 234px; height: 292px;"></div>
+                    </div>
+                    <div class="simplebar-track simplebar-horizontal" style="visibility: hidden;"><div class="simplebar-scrollbar" style="width: 0px; display: none;"></div></div>
+                    <div class="simplebar-track simplebar-vertical" style="visibility: visible;"><div class="simplebar-scrollbar" style="height: 151px; display: block; transform: translate3d(0px, 0px, 0px);"></div></div>
+                </div>
+            </div>
+            <!-- /Inner sidebar body -->
+        </div>
+        <!-- /Inner sidebar -->
+
+        <!-- Inner main -->
+        <div class="inner-main">
+            <!-- Inner main header -->
+            <div class="inner-main-header">
+                <a class="nav-link nav-icon rounded-circle nav-link-faded mr-3 d-md-none" href="#" data-bs-toggle="inner-sidebar"><i class="material-icons">arrow_forward_ios</i></a>
+                
+                <span class="input-icon input-icon-sm ml-auto w-auto">
+                    <input style="margin-left:20px;" type="text"  [(ngModel)]="searchtext"  [ngModelOptions]="{standalone: true}" (ngModelChange)="Recherche($event)"  class="form-control form-control-sm bg-gray-200 border-gray-200 shadow-none mb-4 mt-4" placeholder="Search forum" />
+                </span>
+            </div>
+            <!-- /Inner main header -->
+
+            <!-- Inner main body -->
+
+            <!-- Forum List -->
+            <div class="inner-main-body p-2 p-sm-3 collapse forum-content show">
+               
+                <div class="card mb-2" *ngFor="let forum of forums" >
+                    <div class="card-body p-2 p-sm-3">
+                        <div class="media forum-item">
+                            <a href="#" data-bs-toggle="collapse" data-bs-target=".forum-content"><img [src]="forum.user.uri" class="mr-3 rounded-circle" width="50" height="50" alt="User" /> </a>  {{forum.user?.nom_PERS}} {{forum.user?.pren_PERS}}
+                            <div class="media-body">
+                                <h6><a href="#" [id]="forum.id" (click)="getForumByid($event);getReplies(forum.id)" data-bs-toggle="collapse" data-bs-target=".forum-content" class="text-body">{{forum.title}}</a></h6>
+                                <p class="text-secondary">
+                                    {{forum.body}}
+                                </p>
+                            </div>
+                            <div class="text-muted small text-center align-self-center">
+                                <span><i class="far fa-comment ml-2"></i>{{forum.replicount}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            <!-- /Forum List -->
+
+            <!-- Forum Detail -->
+            <div class="inner-main-body p-2 p-sm-3 collapse forum-content">
+                <a href="#" class="btn btn-light btn-sm mb-3 has-icon" data-bs-toggle="collapse" data-bs-target=".forum-content"><button class="btn" (click)="reload()"><i class="fa fa-arrow-left mr-2"></i>Back</button></a>
+                <div class="card mb-2">
+                    <div class="card-body">
+                        <div class="media forum-item">
+                            <a href="javascript:void(0)" class="card-link">
+                                <img [src]="forum1?.user.uri" class="rounded-circle" width="50" alt="User" />
+                            </a>
+                            <div class="media-body ml-3">
+                                <a href="javascript:void(0)" class="text-secondary">{{forum1?.user.pren_PERS }}    {{forum1?.user.nom_PERS}}</a>
+                                <h5 class="mt-1"></h5>
+                                <div class="mt-3 font-size-sm">
+                                    
+                                    <p>
+                                        {{forum1?.body}}
+                                    </p>
+                                    
+                                </div>
+                            </div>
+                            <div class="text-muted small text-center">
+                                <span><i class="far fa-comment ml-2"></i> {{forum1?.replicount}}</span>
+                            </div>
+                        </div>
+                    </div>
+                     <div class="col-md-2" style="padding-bottom:5px;padding-left: 5px;">
+                        <button (click)="open()" href="javascript:void(0)" class="btn btn-light btn-outline-primary">Commentaire</button>
+                     </div>
+                    
+                        <div class="row" *ngIf="isopened==true">
+                            <div class="col-6">
+                                <div class="form-group" style="margin-left: 20px;margin-top: 10px;padding-bottom:5px;">
+                                    <input id="subject"  [(ngModel)]="reply.body"  type="text" [ngModelOptions]="{standalone: true}"  type="text" placeholder="Ajouter un commentaire ..." class="form-control"> 
+                                </div>
+                                
+                            </div>
+                            <div class="col-md-2"><button [id]="forum1?.id" (click)="Reply();close();getReplies(forum1?.id)" class="btn btn-light" style="margin-top: 10px;"><i class="fa fa-sharp fa-shake fa-regular fa-arrow-right fa-sm" style="color: #4c4c4d;"></i></button> </div>
+                        </div>
+                    
+
+                </div>
+                <div class="card mb-2"  *ngFor="let reply of replies">
+                    <div class="card-body">
+                        <div class="media forum-item">
+                            <a href="javascript:void(0)" class="card-link">
+                                <img [src]="reply.user.uri" class="rounded-circle" width="50" alt="User" />
+                                
+                            </a>
+                            <div class="media-body ml-3">
+                                <a href="javascript:void(0)" class="text-secondary">{{reply.user.nom_PERS}} {{reply.user.pren_PERS}}</a>
+                                <div class="mt-3 font-size-sm">
+                                    <p>{{reply.body}}</p>
+                                </div>
+                               
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /Forum Detail -->
+
+            <!-- /Inner main body -->
+        </div>
+        <!-- /Inner main -->
+    </div>
+
+    <!-- New Thread Modal -->
+    <div class="modal fade"  id="threadModal" tabindex="-1" role="dialog" aria-labelledby="threadModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <form>
+                    <div class="modal-header d-flex align-items-center  text-white" style="background-color:  #20247b;">
+                        <h6 class="modal-title mb-0" id="threadModalLabel">Nouvelle Discussion</h6>
+                        
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="threadTitle">Titre</label>
+                            <input type="text" class="form-control" id="threadTitle" placeholder="Titre" [(ngModel)]="forum.title"  [ngModelOptions]="{standalone: true}"autofocus="" />
+                        </div>
+                        <div class="input-group mb-3">
+                            <input type="textarea" style="margin-top: 20px;" [(ngModel)]="forum.body"  [ngModelOptions]="{standalone: true}" class="form-control" placeholder="..." aria-label="Recipient's username" aria-describedby="basic-addon2">
+                            
+                          </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button  (click)="onCloseHandled()" type="button" class="btn btn-light" data-dismiss="modal">Annuler</button>
+                        <button type="button" class="btn" (click)="onSubmit();onCloseHandled();getForums()" style="background-color: #fc5356;color:white;">Sauvegarder</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<app-footer></app-footer>

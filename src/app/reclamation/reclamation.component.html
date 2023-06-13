@@ -1,0 +1,66 @@
+<app-header></app-header>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+
+<section class="section gray-bg" id="contactus">
+    <div class="container-fluid">
+        <div class="row bg-sand">
+            <div class="col-6" style="padding-left: 40px;">
+                <div class="section-title">
+                  <h2>Reclamation </h2>
+              </div>
+               </div>
+            </div>
+        <div class="row flex-row-reverse">
+            <div class="col-md-7 col-lg-8 m-15px-tb">
+                <div class="contact-form">
+                     <form action="/" method="post" class="contactform contact_form" id="contact_form">
+                        <div class="returnmessage valid-feedback p-15px-b" data-success="Your message has been received, We will contact you soon."></div>
+                        <div class="empty_notice invalid-feedback p-15px-b"><span>Please Fill Required Fields</span></div>
+                        <div class="row">
+                            
+
+                            <div class="row">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <input id="subject" type="text"  [(ngModel)]="reclamation.subject" [ngModelOptions]="{standalone: true}" placeholder="Subject" class="form-control"> 
+                                </div>
+                                <br>
+                            </div>
+                        </div>
+                            
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <textarea id="message" placeholder="Message"  [(ngModel)]="reclamation.message" [ngModelOptions]="{standalone: true}"class="form-control" rows="3"></textarea> 
+                                </div>
+                            </div>
+                            <br> <br> <br> <br> <br>
+                            <div class="col-md-12">
+                                <div class="send">
+                                    <a id="send_message" class="px-btn theme" (click)="ajouterReclamation()"><span>Envoyer</span> <i class="arrow"></i></a>
+                                </div>
+                               
+                            </div>
+                            
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-5 col-lg-4 m-15px-tb">
+                <div class="contact-name" style="padding-left:15% ;">
+                    <h5>Département</h5>
+                    <div class="col-lg-6"style="width: 300px;">
+                        <select class="form-select form-select-lg mb-3"  [(ngModel)]="reclamation.departement" [ngModelOptions]="{standalone: true}" aria-label=".form-select-lg example">
+                            <option value="ROLE_ChefDepartement" selected>département informatique</option>
+                            <option value="ROLE_ChefDepartement">département technique</option>
+                            <option value="2">département ...</option>
+                            <option value="3">département ....</option>
+                          </select>
+                        </div>
+                        
+                </div>
+             
+            </div>
+        </div>
+    </div>
+</section>
+<app-footer></app-footer>

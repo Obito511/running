@@ -1,0 +1,159 @@
+<app-header></app-header>
+
+<div class="container padding-bottom-3x mb-1">
+  <div class="col-6">
+    <div class="section-title">
+      <h2>Demande administrative</h2>
+  </div>
+   </div>
+   <br><br>      
+  <div class="card mb-3">
+         
+            <div class="steps d-flex flex-wrap flex-sm-nowrap justify-content-between padding-top-2x padding-bottom-1x">
+                <!--step 1-->
+              <div class="step " id="step1">
+                <div class="step-icon-wrap">
+                  <div class="step-icon"><i class="fa fa-list"></i></div>
+                  
+                </div>
+                <h4 class="step-title">Demande souhaitée</h4>
+                
+              </div>
+                <!--step 2-->
+              <div class="step" id="step2">
+                <div class="step-icon-wrap">
+                  <div class="step-icon"><i class="fa fa-info"></i></div>
+                </div>
+                <h4 class="step-title">details</h4>
+              </div>
+              <!--step 3-->
+              <div class="step " id="step3">
+                <div class="step-icon-wrap">
+                  <div class="step-icon"><i class="fa fa-check"></i></div>
+                </div>
+                <h4 class="step-title">confirmation</h4>
+              </div>
+            </div>
+        </div>
+        <div *ngIf="step ==1" class="step1body">
+            <div class="form-check" *ngFor="let demande of demandes">
+                <label>{{demande}}
+                <input class="form-check-input"  type="radio" (change)="changeHandler($event)" value="{{demande}}" name="radio" >
+            </label>
+              </div>
+              
+              <button style="margin:60px;" class="btn btn-primary" (click)="next()">Suivant</button>
+              <app-footer></app-footer>
+        </div>
+        <!--STEP 2-->
+        
+        
+        <div *ngIf="step==2" class="step2body">
+                 <div class="row"*ngIf="selectedDemande=='fiche de paie'">
+            <div class="col-lg-6"style="width: 300px;">
+             <select class="form-select form-select-lg mb-3" [(ngModel)]="fichedepaie.date" [ngModelOptions]="{standalone: true}" aria-label=".form-select-lg example">
+                 <option selected>Mois</option>
+                 <option value="janvier">janvier</option>
+                 <option value="février">février</option>
+                 <option value="Mars">Mars</option>
+                 <option value="Avril">Avril</option>
+                 <option value="Mai">Mai</option>
+                 <option value="Juin">Juin</option>
+                 <option value="Juillet">Juillet</option>
+                 <option value="Aout">Aout</option>
+                 <option value="Septembre">Septembre</option>
+                 <option value="Octobre">Octobre</option>
+                 <option value="Novembre">Novembre</option>
+                 <option value="Decembre">Decembre</option>
+               </select>
+             </div>
+             <div class="col-md-4"> <button style="margin:60px;" class="btn btn-primary" (click)="next();postFiche()">suivant</button></div>
+             <app-footer></app-footer>
+         </div>
+          
+        <!--STEP 2 IF ATTESTATION DE TRAVAIL-->
+        <div class="row" *ngIf="selectedDemande=='Attestation de travail'"   >
+                <div class="form-group">
+                   
+                      <div >
+                        <p>Cliquer pour télécharger votre Attestation de Travail</p>
+                      </div>
+            </div>
+            <div class="col-md-4"> <button style="margin:60px;" class="btn btn-primary" (click)="getAttestation()">Télécharger</button></div>
+            <app-footer></app-footer>
+        </div>
+        <!--END STEP 2 IF ATTESTATION DE TRAVAIL-->
+        <!--STEP 2 IF DEMANDE SOCIALE-->
+        <div class="row" *ngIf="selectedDemande=='Demande sociale'">
+            <div class="form-group">
+                <div class="col-md-4" *ngFor="let social of socials">
+                  <label><input  type="radio" class="form-check-input"   name="id" (change)="changeHandler2($event)" value="{{social}}">
+                  {{social}}</label>
+           </div>
+           <div class="col-md-4"> <button style="margin:60px;" class="btn btn-primary" (click)="next()">suivant</button></div>
+        </div>
+        <app-footer></app-footer>
+      </div>
+    <!--END STEP 2 IF DEMANDE SOCIALE-->
+
+
+    <!--STEP 2 IF DEMANDE CONGE-->
+    
+<!--END STEP 2 IF DEMANDE CONGE-->
+
+         </div>         
+         <!-- END STEP 2-->
+         <div *ngIf="step==3" class="step3body">
+          <div class="row"*ngIf="selectedDemande=='fiche de paie'">
+     <div class="col-lg-6"style="width: 300px;">
+   <p>attendez la reponse de la ressources humaines</p>
+      </div>
+     
+     
+  </div>
+
+         <div *ngIf="step ==3" class="step3body">
+            <div class="col-md-2" *ngIf="social1=='demande avance sur salaire'">
+              <div class="form-group">
+                <label for="image" class="btn btn-primary">Attacher un Motif</label>
+  
+                <input type="file"  (change)="selectFile($event);"  class="form-control" id="image" style="display: none;" >
+                <button style="margin:60px;"  class="btn btn-primary" (click)="confirmer();postDemande()">Confirmer</button>
+            </div>
+            </div>
+            <div class="col-md-4" *ngIf="social1=='demande prime de déces'">
+              <div class="form-group">
+                <label for="image" class="btn btn-primary">Attacher un extrait de déces</label>
+  
+                <input type="file"  (change)="selectFile($event);"  class="form-control" id="image" style="display: none;" >
+                <br>
+                <button style="margin:60px;"  class="btn btn-primary" (click)="confirmer();postDemande()">Confirmer</button>
+            </div>
+            </div>
+            <div class="col-md-4" *ngIf="social1=='demande prime de mariage'">
+              <div class="form-group">
+                <label for="image" class="btn btn-primary">Attacher un Contrat de marriage</label>
+  
+                <input type="file" (change)="selectFile($event);"  class="form-control" id="image" style="display: none;" >
+  
+            </div>
+            <button style="margin:60px;"  class="btn btn-primary" (click)="confirmer();postDemande()">Confirmer</button>
+            </div>
+            <div class="row"  *ngIf="social1=='demande convention Ooredoo'">
+            
+            
+            <div class="col-md-2">
+              <div class="form-group">
+                <label for="image" class="btn btn-primary">Attacher CIN frontale + arriére</label>
+  
+                <input type="file" (change)="selectFileb($event);"  multiple="multiple" class="form-control" id="image" style="display: none;" >
+            </div>
+            <button style="margin:60px;"  class="btn btn-primary" (click)="confirmer();postDemandeb()">Confirmer</button>
+          </div>
+            
+  
+         
+        </div>
+        
+      </div>
+<app-footer></app-footer>

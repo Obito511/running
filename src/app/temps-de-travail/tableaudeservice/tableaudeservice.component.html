@@ -1,0 +1,162 @@
+<app-header></app-header>
+    <body>
+   
+        <section class="intro">
+            
+            <div class="bg-image h-100" style="background-color: #ffffff;margin-top: 0%;">
+              <div class="mask d-flex align-items-center h-100">
+                <div class="container-fluid">
+ 
+    <div class="row">
+      <div class="col-6">
+        <div class="section-title">
+          <h2>Tableau de service</h2>
+      </div>
+       </div>
+    </div>
+  
+                    <div class="row" style="margin-left: 80%;">
+                        <div class="col-lg-6"style="width: 300px;">
+                         <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+                             <option selected>année</option>
+                             <option value="1">2023</option>
+                             <option value="2">2022</option>
+                             <option value="3">2021</option>
+                           </select>
+                         </div>
+                         
+                        
+                     </div>
+                     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+
+                     <div class="event-schedule-area-two bg-color pad100">
+                         <div class="container-fluid">
+                             <div class="row">
+                                 
+                                   
+                                 <!-- /.col end-->
+                             </div>
+                             <!-- row end-->
+                             <div class="row">
+                                 
+                                 
+                                        
+                                        <div class="col-lg-1">
+                                        
+                                             <button (click)="getJanvier()" class="btn btn-primary">Janvier</button>
+                                         
+                                        </div>
+                                        <div class="col-lg-1">
+                                         
+                                            <button (click)="getTableauFevrier()" class="btn btn-primary">Fevrier</button>
+                                        
+                                        </div>
+                                        <div class="col-lg-1">
+                                         
+                                            <button class="btn btn-primary"   (click)="getTableauMars()">Mars</button>
+                                         
+                                        </div>
+                                        <div class="col-lg-1">
+                                         
+                                            <button (click)="getTableauAvril()"class="btn btn-primary">Avril</button>
+                                        
+                                        </div>
+                                        <div class="col-lg-1">
+                                         
+                                            <button (click)="getTableauMai()" class="btn btn-primary">Mai</button>
+                                        
+                                        </div>
+                                        <div class="col-lg-1">
+                                         
+                                            <button (click)="getTableauJuin()" class="btn btn-primary">Juin</button>
+                                       
+                                    </div>
+                                    <div class="col-lg-1">
+                                         
+                                            <button (click)="getTableauJuillet()" class="btn btn-primary">Juillet </button>
+                                       
+                                    </div>
+                                    <div class="col-lg-1">
+                                         
+                                            <button (click)="getTableauAout()" class="btn btn-primary">Aout</button>
+                                        
+                                    </div>
+                                    <div class="col-lg-1">
+                                        
+                                            <button (click)="getTableauSeptembre()" class="btn btn-primary">Septembre</button>
+                                        
+                                    </div>
+                                    <div class="col-lg-1">
+                                        
+                                            <button (click)="getTableauOctobre()" class="btn btn-primary">Octobre</button>
+                                        
+                                    </div>
+                                    <div class="col-lg-1">
+                                        
+                                            <button (click)="getTableauNovembre()" class="btn btn-primary">Novembre</button>
+                                       
+                                    </div>
+                                    <div class="col-lg-1">
+                                         
+                                            <button (click)="getTableauDecembre()" class="btn btn-primary">Decembre</button>
+                                       
+                                    </div>
+                                    
+                          
+                                     </div>
+                                     <br>
+                                     <br>
+                                     <div class="tab-content" id="myTabContent">
+                                         <div class="tab-pane fade active show" id="home" role="tabpanel">
+                                             <div class="table-responsive">
+                                                 <table class="table">
+                                                     <thead>
+                                                         <tr>
+                                                             <th class="text-center" scope="col">Jour</th>
+                                                             <th scope="col">Type de Brigade</th>
+                                                             <th scope="col">Regime de brigade</th>
+                                                           
+                                             
+                                                         </tr>
+                                                     </thead>
+                                                     <tbody *ngFor="let res of janvierDays">
+                                                         <tr class="inner-box">
+                                                             <th  scope="row">
+                                                                 <div class="event-date">
+                                                                     <span>{{res.days}}</span>
+                                                                  
+                                                                 </div>
+                                                             </th>
+                                                             <td>
+                                                                 <div class="event-img">
+                                                                   {{res.prec_COD_M}}
+
+                                                                 </div>
+                                                             </td>
+                                                             <td>
+                                                                 <div class="event-wrap">
+                                                                    
+                                                                     <div class="meta">
+                                                                        
+                                                                         <div class="time">
+                                                                             <span>{{res.reg_BASE}}</span>
+                                                                         </div>
+                                                                     </div>
+                                                                 </div>
+                                                             </td>
+                                                            
+                                                         </tr>
+                                                         
+                                                     </tbody>
+                                                 </table>
+                                             </div>
+                                         </div>
+                                         </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                   
+                 </section>     
+                 <app-footer></app-footer>             

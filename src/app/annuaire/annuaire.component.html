@@ -1,0 +1,48 @@
+<app-header></app-header>
+<body>
+   
+<section class="intro">
+    
+    <div class="bg-image h-100" style="background-color: #ffffff;margin-top: 0%;">
+      <div class="mask d-flex align-items-center h-100">
+        <div class="container-fluid">
+            <div class="col-6">
+              <div class="section-title">
+                <h2>Annuaire des employées</h2>
+            </div>
+             </div>
+          <div class="row justify-content-center" style="display: contents;">
+            <div class="col-12">
+                  <div class="table-responsive "style="margin-top:2%">
+                    <table class="table table-striped  mb-0" style="background-color: rgb(255, 255, 255);">
+                      <thead >
+                        <tr class="text-uppercase">
+                          
+                          <th scope="col">Nom</th>
+                          <th scope="col">Prénom</th>
+                          <th scope="col">Numero de telephone</th>
+                          <th scope="col">Email</th>
+                        </tr>
+                      </thead>
+                      <tbody style="-webkit-text-fill-color: rgb(5, 5, 5);">
+                        <tr *ngFor="let user of users;let index=index ">
+                         
+                          <td>{{user.nom_PERS}}</td>
+                          <td>{{user.pren_PERS}}</td>
+                          <td>{{user.numerodetelephone}}</td>
+                          <td>{{user.email}}</td>
+                        </tr>
+                        
+                      </tbody>
+                    </table>
+                  </div>
+               
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</body>
+<app-footer></app-footer>

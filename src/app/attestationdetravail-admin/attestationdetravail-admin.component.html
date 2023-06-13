@@ -1,0 +1,62 @@
+<app-header></app-header>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+
+<div class="container-fluid">
+    <div class="col-6">
+        <div class="section-title">
+          <h2>les demandes Social</h2>
+      </div>
+       </div>
+       <br>
+       <br>
+    <!-- end row -->
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="table-responsive project-list">
+                        <table class="table table-striped project-table table-centered table-nowrap">
+                            <thead>
+                                <tr>
+                                    <th scope="col">nom et prénom</th>
+                                    <th scope="col">Type</th>
+                                    <th scope="col">Etat</th>
+                                    <th scope="col">fichier 1</th>
+                                    <th scope="col">fichier 2</th>
+                                    <th scope="col">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                             
+
+                                <tr *ngFor="let act of response">
+                                    <th scope="row">{{act.user?.nom_PERS
+                                    }} {{act.user?.pren_PERS}}</th>
+                                    <td>{{act.type}}</td>
+                                    <td>{{act.proved}}</td>
+                                    <td><button (click)="download(act.uri,getfilename(act.uri))" class="btn"><i class="fa fa-download"></i></button></td>
+                                    <td >
+                                        <button *ngIf="act.uri1!==null" (click)="download(act.uri1,getfilename(act.uri1))" class="btn"><i class="fa fa-download"></i></button>
+                                    </td>
+
+                                    <td>
+                                        <div class="action">
+                                            <button [id]="act.id" (click)="getId($event);updateEtat()"> <svg [id]="act.id" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check2" viewBox="0 0 16 16">
+                                                <path  d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+                                              </svg></button>
+                                           
+                                          
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>
